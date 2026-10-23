@@ -1,25 +1,92 @@
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import SummeryCard from "./components/SummeryCard";
+import TransactionItem from "./components/TransactionItem";
+
+
  
 
 function App() {
    
 
   return (
-    <div className='min-h-screen bg-slate-200 flex items-center justify-center p-6'>
-      <div className='w-full max-w-lg rounded-2xl bg-white p-8 shadow-lg text-center'>
-        <h1 className="text-3xl font-bold text-blue-700">
-         My React Journey
-        </h1>
-      <p className='mt-4 text-gray-600'>
-        Day 1: I'm learning React from scratch.
-      </p>
+    <div className='min-h-screen bg-slate-200'>
+      <Navbar />
 
-      <p className='mt-2 text-gray-600'>
-        I'm learning React step by step
-      </p>
-      <button className='mt-6 rounded-lg bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-800'>
-        Start Learning
-      </button>
-       </div>
+      <main className="max-w-5xl mx-auto p-6">
+        <div className="mb-8">
+             <h2 className="text-3xl font-bold text-slate-800"> Dashboard</h2>
+             <p className="text-slate-500"> Aapke paise ka poora hisaab , matr ek jagah</p>
+             </div>
+
+{/* Summary Cards */}
+             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <SummeryCard
+          title="Total Balance"
+          amount={32500}
+          icon="💼"
+          gradient="bg-gradient-to-br from-indigo-500 to-purple-600" 
+          />
+           
+           <SummeryCard
+            title="Total Income"
+            amount={50000}
+            icon="📈"
+            gradient="bg-gradient-to-br from-emerald-500 to-teal-600"
+          />
+          
+           <SummeryCard
+            title="Total Expenses"
+            amount={17500}
+            icon="📉"
+            gradient="bg-gradient-to-br from-rose-500 to-orange-500"
+          />
+        </div>
+
+        {/* Recent Transactions */}
+        <section className="mt-10 rounded-2xl bg-white p-6 shadow">
+          <h3 className="mb-2 text-xl font-bold text-slate-800">
+             Recent Transactions
+          </h3>
+
+          <div className="divide-y divide-slate-100">
+            <TransactionItem 
+            icon="💵"
+            title="Salary"
+            category="Income"
+            date="01 Jan"
+            amount={50000}
+            type="income"
+            />
+
+            <TransactionItem
+              icon="🍔"
+              title="Zomato Order"
+              category="Food"
+              date="03 Jan"
+              amount={450}
+            />
+
+            <TransactionItem
+              icon="🚕"
+              title="Uber Ride"
+              category="Travel"
+              date="04 Jan"
+              amount={320}
+            />
+
+              <TransactionItem
+              icon="🛍️"
+              title="Shopping"
+              category="Lifestyle"
+              date="05 Jan"
+              amount={2800}
+            />
+          </div>
+        </section>
+      </main>
+
+      <Footer />
     </div>
   )
 }

@@ -85,23 +85,7 @@ expense-tracker/
 - Node.js 20.19+ (or 22.12+)
 - npm
 
-### Installation
 
-```bash
-# Clone the repository
-git clone https://github.com/YOUR-USERNAME/expense-tracker-react.git
-
-# Go to the project folder
-cd expense-tracker-react
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev
-```
-
-Open `http://localhost:5173` in your browser.
 
 ## 🗺️ Roadmap
 
@@ -118,7 +102,7 @@ Open `http://localhost:5173` in your browser.
 Learning in public. Follow my journey:
 
 - LinkedIn:(https://www.linkedin.com/in/poonam-274843226/)
-- GitHub: [@your-username](https://github.com/Poonam-D07)
+- GitHub: (https://github.com/Poonam-D07)
 
 ---
 

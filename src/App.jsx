@@ -1,3 +1,5 @@
+import Button from "./components/Button";
+import Card from "./components/Card";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import SummeryCard from "./components/SummeryCard";
@@ -24,27 +26,31 @@ function App() {
           <SummeryCard
           title="Total Balance"
           amount={32500}
+          subtitle="This month balance"
           icon="💼"
           gradient="bg-gradient-to-br from-indigo-500 to-purple-600" 
           />
-           
-           <SummeryCard
+          
+          <SummeryCard
             title="Total Income"
             amount={50000}
+            subtitle="This month income"
             icon="📈"
             gradient="bg-gradient-to-br from-emerald-500 to-teal-600"
           />
           
-           <SummeryCard
+          <SummeryCard
             title="Total Expenses"
             amount={17500}
+            subtitle="This month expenses"
             icon="📉"
             gradient="bg-gradient-to-br from-rose-500 to-orange-500"
           />
         </div>
 
         {/* Recent Transactions */}
-        <section className="mt-10 rounded-2xl bg-white p-6 shadow">
+        {/* <section className="mt-10 rounded-2xl bg-white p-6 shadow"> */}
+          <Card>
           <h3 className="mb-2 text-xl font-bold text-slate-800">
              Recent Transactions
           </h3>
@@ -65,6 +71,7 @@ function App() {
               category="Food"
               date="03 Jan"
               amount={450}
+
             />
 
             <TransactionItem
@@ -83,9 +90,25 @@ function App() {
               amount={2800}
             />
           </div>
-        </section>
+        {/* </section> */}
+        </Card>
+        
+        <div className="flex items-center justify-center gap-8 p-6 ">
+          <div className=" ">
+                  <Button 
+                text= "Create"
+                color= "blue"
+                />
+          </div>
+          <div>
+                <Button 
+                text= "Delete"
+                color= "red"
+                />
+          </div>
+        </div>
       </main>
-
+   
       <Footer />
     </div>
   )

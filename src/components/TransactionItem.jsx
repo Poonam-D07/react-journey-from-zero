@@ -13,12 +13,25 @@
                 <div className="flex items-center gap-2">
                     <p className="font-semibold text-slate-800">{title}</p>
                     {isHighSpend && (
-                        <span className="rounded-full bg-orange-100 px-2 py-0.5 text-xs font-medium text-orange-600">
+                        <span className="rounded-full bg-red-200 px-2 py-0.5 text-xs font-medium text-red-700">
                             High spend
                         </span>
                     )}
                 </div>
-                <p className="text-sm text-slate-500"> {category} • {date}</p>
+                <div className="flex items-center gap-2 mt-1 text-sm text-slate-500">
+                    <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${
+                        {
+                            Food: "bg-orange-100 text-orange-700",
+                            Travel: "bg-blue-100 text-blue-700",
+                            Bills: "bg-red-100 text-red-700",
+                            Income: "bg-green-100 text-green-700",
+                            Lifestyle: "bg-purple-100 text-purple-700"    
+                        }[category] || "bg-slate-100 text-slate-700"
+                    }`}>
+                        {category}
+                    </span>
+                    <span>• {date}</span>
+                </div>
             </div>
         </div>
         

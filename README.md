@@ -12,7 +12,7 @@ Coming soon (will be deployed on Vercel/Netlify on Day 7)
 
 | Desktop | Mobile |
 |---|---|
-| ![Desktop](./screenshots/desktop.png) | ![Mobile](./screenshots/mobile.png) |
+| ![Desktop](./screenshots/day3Desktop.png) | ![Mobile](./screenshots/day3Mobile.png) |
 
 > Add your screenshots in a `screenshots/` folder in the repo.
 

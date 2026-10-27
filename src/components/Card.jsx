@@ -1,7 +1,7 @@
 
-function Card({ children}) {
+function Card({ children, className=" "}) {
   return (
-    <section className="mt-10 rounded-2xl bg-white p-6 shadow">
+    <section className={` rounded-2xl bg-white p-6 shadow ${className} `}>
         {children}
     </section>
   )

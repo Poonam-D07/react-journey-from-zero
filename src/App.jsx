@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./components/Button";
 import Card from "./components/Card";
+import ExpenseForm from "./components/ExpenseForm";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import SummeryCard from "./components/SummaryCard";
@@ -9,25 +10,29 @@ import { transactions as initialTransactions } from "./data/transaction";
 
 
 
- 
-const sampleExpenses = [
-  { icon: "☕", title: "Chai Tapri", category: "Food", amount: 60 },
-  { icon: "⛽", title: "Petrol", category: "Travel", amount: 1200 },
-  { icon: "📚", title: "Udemy Course", category: "Education", amount: 499 },
-  { icon: "🍕", title: "Dominos Pizza", category: "Food", amount: 780 },
-  { icon: "🎮", title: "Game Purchase", category: "Entertainment", amount: 2999 },
-];
-
 const filterTabs = [
   { value: "all", label: "All" },
   { value: "income", label: "Income" },
   { value: "expense", label: "Expense" },
 ];
 
-
+const STORAGE_KEY = "expense-tracker-transactions";
 function App() {
-  const [transactions, setTransactions] = useState(initialTransactions);
+ 
+   const [transactions, setTransactions] = useState(()=>{
+  try{
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : initialTransactions;
+  }catch{
+    return initialTransactions;
+  }
+ });
   const [filter, setFilter] = useState("all");
+
+   // Jab bhi transactions badle, localStorage mein save karo
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
+  }, [transactions]);
 
     // Derived values: state se hi nikalte hain, alag state nahi banate
     const totalIncome = transactions
@@ -43,17 +48,20 @@ function App() {
     const visibleTransactions = filter === "all" ? transactions : transactions.filter((t) => t.type === filter);
 
     // ---- Event handlers ----
-    const handleAdd = () =>{
-          const sample = sampleExpenses[Math.floor(Math.random() * sampleExpenses.length)];
-
-          const newTransaction = {
-      ...sample,
-      id: Date.now(), // unique id
-      type: "expense",
-      date: new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "short" }),
-    };
+    const handleAdd = (data) =>{
+      const newTransaction = {
+        ...data,
+        id: Date.now(),
+        date: new Date().toLocaleDateString("en-IN",{day: "2-digit", month:"short"}),
+      };
+ 
+        
      setTransactions((prev) => [newTransaction, ...prev]);
   };
+
+const handleReset = () =>{
+  setTransactions(initialTransactions);
+};
 
   const handleDelete = (id) => {
     setTransactions((prev) => prev.filter((t) => t.id !== id));
@@ -98,6 +106,7 @@ function App() {
             gradient="bg-gradient-to-br from-rose-500 to-orange-600"
           />
         </div>
+        <ExpenseForm onAdd={handleAdd} />
 
         {/* Recent Transactions */}
         {/* <section className="mt-10 rounded-2xl bg-white p-6 shadow"> */}
@@ -129,7 +138,7 @@ function App() {
         
         {/* button */}
      <div className="mt-6 flex justify-center gap-4">
-            <Button text="+ Add Expense" color="blue" onClick={handleAdd} />
+            <Button text="Reset Data" color="blue" onClick={handleReset} />
             <Button text="Delete latest" color="red" onClick={handleDeleteLatest} />
         </div>
       </main>

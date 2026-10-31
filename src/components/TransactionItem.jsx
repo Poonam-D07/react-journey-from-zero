@@ -1,5 +1,5 @@
 
- function TransactionItem( { id, icon, title, category, date, amount, type = "expense", onDelete }) {
+ function TransactionItem( { id, icon, title, category, date, amount, type = "expense", onDelete, onEdit }) {
     const isIncome = type ==="income";
     const isHighSpend = !isIncome && amount>2000;
   return (
@@ -34,11 +34,27 @@
                 </div>
             </div>
         </div>
-        <div className="flex items-center gap-4">
-        <p className={`font-bold ${isIncome ? "text-green-600" : "text-red-500"}`}>
+        <div className="flex items-center gap-2">
+        <p className={`font-bold mr-2 ${isIncome ? "text-green-600" : "text-red-500"}`}>
             {isIncome ? "+" : "-"}₹{amount.toLocaleString("en-IN")}
         </p>
 
+      <button 
+      onClick={() => onEdit({
+        id,
+        icon,
+        title,
+        category,
+        date,
+        amount,
+        type
+      })}
+      aria-label={`Edit ${title}`}
+    //"rounded-full p-2 text-slate-400 transition hover:bg-blue-50 hover:text-blue-600"
+                className="rounded-full p-2 text-slate-400 transition hover:bg-blue-50 hover:text-blue-600"
+      >
+        ✏️
+      </button>
         <button
             onClick={()=> onDelete(id)}
             aria-label={`Delete ${title}`}

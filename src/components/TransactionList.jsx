@@ -1,6 +1,6 @@
 import TransactionItem from "./TransactionItem";
 
-function TransactionList( { transactions, onDelete }) {
+function TransactionList( { transactions, onDelete, onEdit }) {
     if(transactions.length === 0){
   return (
     <div className="py-12 text-center">
@@ -24,6 +24,7 @@ return(
         amount={t.amount}
         type = {t.type}
           onDelete={onDelete}
+          onEdit={onEdit}
         />  
         ))}
        
